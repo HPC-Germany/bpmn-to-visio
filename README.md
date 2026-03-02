@@ -109,6 +109,63 @@ bpmn-to-visio --batch ./bpmn-files/
 
 Output `.vsdx` files are placed next to each `.bpmn` source, or in the directory specified by `-o`.
 
+### Minimal desktop UI (local/offline)
+
+Launch the basic GUI (Select `.bpmn` → Convert):
+
+```bash
+bpmn-to-visio-gui
+```
+
+Or from source:
+
+```bash
+python bpmn_to_visio_gui.py
+```
+
+The output `.vsdx` file is created next to the selected `.bpmn` file.
+
+### Build a double-clickable Windows app (.exe)
+
+Install PyInstaller:
+
+```bash
+py -m pip install pyinstaller
+```
+
+Build a single-file GUI executable:
+
+```bash
+py -m PyInstaller --onefile --windowed --name BPMN-to-Visio bpmn_to_visio_gui.py
+```
+
+The executable is generated at `dist/BPMN-to-Visio.exe`.
+
+For Surface Laptop 7 support, publish both architectures:
+
+- Build on a Windows x64 machine for `win-x64`
+- Build on a Windows ARM64 machine for `win-arm64`
+
+Package each output as a zip (for example `BPMN-to-Visio-win-x64.zip` and `BPMN-to-Visio-win-arm64.zip`).
+
+You can also use the included PowerShell helper script:
+
+```powershell
+.\build-win.ps1
+```
+
+Build and force an architecture label explicitly:
+
+```powershell
+.\build-win.ps1 -Arch win-x64
+.\build-win.ps1 -Arch win-arm64
+```
+
+Outputs are written to `dist/`:
+
+- `BPMN-to-Visio.exe`
+- `BPMN-to-Visio-win-x64.zip` or `BPMN-to-Visio-win-arm64.zip`
+
 ### Python API
 
 ```python
