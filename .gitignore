@@ -11,3 +11,4 @@ build/
 *.egg-info/
 .DS_Store
 BPMN-to-Visio.spec
+BPMN-to-Visio.zip
